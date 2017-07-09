@@ -66,7 +66,7 @@ def processRequest(req):
     
     #result["name"] = results[0][0] 
     #result["days"] = results[0][1]
-    
+    print(afl_query)
     data = json.loads(afl_query)
     print(data)
     res = makeWebhookResult(data)
@@ -90,8 +90,8 @@ def makeAflQuery(req):
     
     for item in data["emlpoyee"]:
         if item["name"]==name:
-           return item 
-
+           res = item 
+    return item
    
 
 
