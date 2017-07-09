@@ -98,14 +98,15 @@ def makeWebhookResult(data):
     print(data)
     data=json.dumps(data)
     name = data.get("name")
+    
     if name is None:
-        print("kk")
+        
         return {}
-
+    print(name)
     days = data.get("days")
     if days is None:
         return {}
-
+    print(days)
     speech = "well " + name + " ,you only have " + days + " left, can you provide me with the begin and end date please?"
              
 
