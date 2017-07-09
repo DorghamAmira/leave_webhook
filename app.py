@@ -67,9 +67,8 @@ def processRequest(req):
     #result["name"] = results[0][0] 
     #result["days"] = results[0][1]
     print(afl_query)
-    data = json.loads(afl_query)
-    print(data)
-    res = makeWebhookResult(data)
+    
+    res = makeWebhookResult(afl_query)
     print(res)
     return res
 
