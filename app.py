@@ -48,7 +48,7 @@ def makeWebhookResult(req):
     
 
     
-    speech =  "well " + name + " ,you only have " + employee["days"] + " left, can you provide me with the begin and end date please?"
+    speech =  "well " + name + " ,you only have " + str(employee["days"]) + " left, can you provide me with the begin and end date please?"
     print("Response:")
     print(speech)
 
