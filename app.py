@@ -76,7 +76,7 @@ def makeAflQuery(req):
     data["emlpoyee"]=[]
     employee = {}
     employee["name"]="amira dorgham"
-    employeee["days"]=14
+    employee["days"]=14
     data["emlpoyee"].append(employee)
     
     result = req.get("result")
