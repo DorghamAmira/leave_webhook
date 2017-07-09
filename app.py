@@ -99,6 +99,7 @@ def makeWebhookResult(data):
     data=json.dumps(data)
     name = data.get("name")
     if name is None:
+        print("kk")
         return {}
 
     days = data.get("days")
