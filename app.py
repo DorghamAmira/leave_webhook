@@ -40,45 +40,56 @@ def processRequest(req):
     if req.get("result").get("action") != "askForLeave":
         return {}
     
+    
+    
     afl_query = makeAflQuery(req)
-    if afl_query is None:
-        return {}
-    conn = mysql.connector.connect(host="localhost", user="root", password="root", database="mydata")
-    cursor = conn.cursor()    
-    try:
+    #if afl_query is None:
+     #   return {}
+    #conn = mysql.connector.connect(host="localhost", user="root", password="root", database="mydata")
+    #cursor = conn.cursor()    
+    #try:
     # Execute the SQL command
-    cursor.execute(afl_query)
+    #cursor.execute(afl_query)
     # Fetch all the rows in a list of lists.
-    results = cursor.fetchall()
-    for row in results:
-        name = row[0]
-        days = row[1]
+    #results = cursor.fetchall()
+    #for row in results:
+     #   name = row[0]
+      #  days = row[1]
         
         # Now print fetched result
-        print "name=%s,days=%d" % \
-              (name, days)
-    except:
-      print "Error: unable to fecth data"
+       # print "name=%s,days=%d" % \
+        #      (name, days)
+    #except:
+     # print "Error: unable to fecth data"
     
+        
     
-    result["name"] = results[0][0] 
-    result["days"] = results[0][1]
-    data = json.loads(result)
+    #result["name"] = results[0][0] 
+    #result["days"] = results[0][1]
+    data = json.loads(afl_query)
     res = makeWebhookResult(data)
     return res
 
 
 def makeAflQuery(req):
+    data = {}
+    data["emlpoyee"]=[]
+    employee = {}
+    employee["name"]="amira dorgham"
+    employeee["days"]=14
+    data["emlpoyee"].append(employee)
+    
     result = req.get("result")
     parameters = result.get("parameters")
     name = parameters.get("name")
     if name is None:
         return None
-    if name != "name":
-        return None
-    value = parameters.get("value")
+    
+    for item in data["emlpoyee"]:
+        if item["name"]==name:
+           return item 
 
-    return "select * from EMPLOYEE where name='" + value + "')"
+   
 
 
 def makeWebhookResult(data):
