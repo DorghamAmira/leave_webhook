@@ -26,7 +26,7 @@ def webhook():
     print("Request:")
     print(json.dumps(req, indent=4))
 
-    res = processRequest(req)
+    res = makeWebhookResult(req)
 
     res = json.dumps(res, indent=4)
     print(res)
@@ -34,97 +34,36 @@ def webhook():
     r.headers['Content-Type'] = 'application/json'
     return r
 
-
-def processRequest(req):
-    result ={}
-    if req.get("result").get("action") != "askForLeave":
+def makeWebhookResult(req):
+    if req.get("result").get("action") != "shipping.cost":
         return {}
-    
-    
-    
-    afl_query = makeAflQuery(req)
-    #if afl_query is None:
-     #   return {}
-    #conn = mysql.connector.connect(host="localhost", user="root", password="root", database="mydata")
-    #cursor = conn.cursor()    
-    #try:
-    # Execute the SQL command
-    #cursor.execute(afl_query)
-    # Fetch all the rows in a list of lists.
-    #results = cursor.fetchall()
-    #for row in results:
-     #   name = row[0]
-      #  days = row[1]
-        
-        # Now print fetched result
-       # print "name=%s,days=%d" % \
-        #      (name, days)
-    #except:
-     # print "Error: unable to fecth data"
-    
-        
-    
-    #result["name"] = results[0][0] 
-    #result["days"] = results[0][1]
-    print(afl_query)
-    
-    res = makeWebhookResult(afl_query)
-    print(res)
-    return res
-
-
-def makeAflQuery(req):
-    data = {}
-    data["emlpoyee"]=[]
-    employee = {}
-    employee["name"]="amira dorgham"
-    employee["days"]=14
-    data["emlpoyee"].append(employee)
-    print(data)
     result = req.get("result")
     parameters = result.get("parameters")
     name = parameters.get("name")
-    if name is None:
-        return None
     
-    for item in data["emlpoyee"]:
-        if item["name"]==name:
-           res = item 
-    return item
-   
-
-
-def makeWebhookResult(data):
-    print(data)
-    data=json.dumps(data)
-    name = data.get("name")
     
-    if name is None:
-        
-        return {}
-    print(name)
-    days = data.get("days")
-    if days is None:
-        return {}
-    print(days)
-    speech = "well " + name + " ,you only have " + days + " left, can you provide me with the begin and end date please?"
-             
+    employee = {}
+    employee["name"]="amira dorgham"
+    employee["days"]=14
+    
 
+    
+    speech =  "well " + name + " ,you only have " + employee["days"] + " left, can you provide me with the begin and end date please?"
     print("Response:")
     print(speech)
 
     return {
         "speech": speech,
         "displayText": speech,
-        # "data": data,
+        #"data": {},
         # "contextOut": [],
-        "source": "amira-leave-webhook-sample"
+        "source": "apiai-onlinestore-shipping"
     }
 
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
 
-    print("Starting app on port %d" % port)
+    print "Starting app on port %d" % port
 
-    app.run(debug=False, port=port, host='0.0.0.0')
+    app.run(debug=True, port=port, host='0.0.0.0')
