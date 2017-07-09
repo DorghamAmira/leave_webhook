@@ -74,8 +74,11 @@ def makeAflQuery(req):
     name = parameters.get("name")
     if name is None:
         return None
+    if name != "name":
+        return None
+    value = parameters.get("value")
 
-    return "select * from EMPLOYEE where name='" + name + "')"
+    return "select * from EMPLOYEE where name='" + value + "')"
 
 
 def makeWebhookResult(data):
