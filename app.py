@@ -29,7 +29,7 @@ def webhook():
     res = processRequest(req)
 
     res = json.dumps(res, indent=4)
-    # print(res)
+    print(res)
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     return r
@@ -95,11 +95,12 @@ def makeAflQuery(req):
 
 
 def makeWebhookResult(data):
-    name = data.get('name')
+    print(data)
+    name = data.get("name")
     if name is None:
         return {}
 
-    days = data.get('days')
+    days = data.get("days")
     if days is None:
         return {}
 
