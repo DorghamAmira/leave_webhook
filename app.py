@@ -66,8 +66,11 @@ def processRequest(req):
     
     #result["name"] = results[0][0] 
     #result["days"] = results[0][1]
+    
     data = json.loads(afl_query)
+    print(data)
     res = makeWebhookResult(data)
+    print(res)
     return res
 
 
@@ -78,7 +81,7 @@ def makeAflQuery(req):
     employee["name"]="amira dorgham"
     employee["days"]=14
     data["emlpoyee"].append(employee)
-    
+    print(data)
     result = req.get("result")
     parameters = result.get("parameters")
     name = parameters.get("name")
