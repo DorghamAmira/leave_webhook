@@ -96,6 +96,7 @@ def makeAflQuery(req):
 
 def makeWebhookResult(data):
     print(data)
+    print(json.dumps(data))
     name = data.get("name")
     if name is None:
         return {}
