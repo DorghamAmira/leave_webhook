@@ -57,7 +57,7 @@ def makeWebhookResult(req):
     
 
     
-    speech =  " okey " + name + " , "can you please confirm your leave ?"
+    speech =  " okey " + name + " , can you please confirm your leave ?"
     print("Response:")
     print(speech)
 
