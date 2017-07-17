@@ -40,15 +40,15 @@ def makeWebhookResult(req):
     result = req.get("result")
     parameters = result.get("parameters")
     name = parameters.get("name")
-    if name is none :
+    if name is None :
         
         return ({'speech':"can you provide me with your name please ? "})
     start = parameters.get("start_date")
-    if start is none : 
+    if start is None : 
         return ({'speech': name + " , you have only 14 days left , from which date ? "})
     end = parameters.get("end_date")
     
-    if end is none :
+    if end is None :
         return ({'speech':"and for the end date ? "})    
     
     employee = {}
