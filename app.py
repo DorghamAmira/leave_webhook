@@ -42,14 +42,14 @@ def makeWebhookResult(req):
     name = parameters.get("name")
     if name is None :
         
-        return ({'speech':"?can you provide me with your name please"})
+        return ({'speech':"can you provide me with your name please ?"})
     start = parameters.get("start_date")
     if start is None : 
-        return ({'speech': "?" + name + " , you have only 14 days left , from which date  "})
+        return ({'speech':  name + " , you have only 14 days left , from which date ? "})
     end = parameters.get("end_date")
     
     if end is None :
-        return ({'speech':"?and for the end date "})    
+        return ({'speech':"and for the end date ? "})    
     
     employee = {}
     employee["name"]="amira dorgham"
@@ -57,7 +57,7 @@ def makeWebhookResult(req):
     
 
     
-    speech =  " ?okey " + name + " , can you please confirm your leave"
+    speech =  "okey " + name + " , can you please confirm your leave ? "
     print("Response:")
     print(speech)
 
